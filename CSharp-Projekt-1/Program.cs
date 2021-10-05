@@ -9,6 +9,11 @@ namespace CSharp_Projekt_1
             Random slump = new Random();
             string senasteVinnaren = "Ingen har vunnit än";
 
+            // Setup variables  
+            int min = 1;
+            int max = 11;
+            int cardsToPickAtStart = 2;
+
             Console.WriteLine("Välkommen till 21:an!");
 
             string menyVal = "0";
@@ -32,10 +37,18 @@ namespace CSharp_Projekt_1
                         int datornsPoäng = 0;
                         int spelarensPoäng = 0;
                         Console.WriteLine("Nu kommer två kort dras per spelare");
-                        datornsPoäng += slump.Next(1, 11);
-                        datornsPoäng += slump.Next(1, 11);
-                        spelarensPoäng += slump.Next(1, 11);
-                        spelarensPoäng += slump.Next(1, 11);
+
+                        for (int i = 1; i <= cardsToPickAtStart; i++ )
+                        {
+                            int computerCard = slump.Next(min, max);
+                            int userCard = slump.Next(min, max);
+
+                            datornsPoäng += computerCard;
+                            spelarensPoäng += userCard;
+
+                            Console.WriteLine($"Computer Card {i} was a {computerCard}");
+                            Console.WriteLine($"Your Card {i} was a {userCard}");
+                        }
 
                         // Låt användaren dra fler kort
                         string kortVal = "";
